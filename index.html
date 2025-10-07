@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Wiki</title>
+  <script src="https://unpkg.com/@supabase/supabase-js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    #article-form { margin-bottom: 20px; }
+    textarea { width: 100%; height: 100px; }
+    .article-link { margin: 5px 0; display: block; }
+  </style>
+</head>
+<body>
+  <h1>Mini Wiki</h1>
+
+  <div id="article-form">
+    <h2>Create New Article</h2>
+    <input id="title" type="text" placeholder="Title" style="width:100%; margin-bottom:10px;"><br>
+    <textarea id="content" placeholder="Write your article..."></textarea><br>
+    <button id="submit-btn">Submit</button>
+  </div>
+
+  <h2>Articles</h2>
+  <div id="articles-list"></div>
+
+  <script src="index.js"></script>
+</body>
+</html>
