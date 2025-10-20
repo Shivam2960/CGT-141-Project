@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>The Wiki of Games</title>
-  <script src="https://unpkg.com/@supabase/supabase-js"></script>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
     #article-form { margin-bottom: 20px; }
@@ -16,13 +15,13 @@
 
   <div id="article-form">
     <h2>Create New Article</h2>
-    <input id="title" type="text" placeholder="Title" style="width:100%; margin-bottom:10px;"><br>
-    <textarea id="content" placeholder="Write your article..."></textarea><br>
-    <button id="submit-btn">Submit</button>
-  </div> <!-- need to have 5 form elements, one wil be author, another could be background color and text color !--> 
+    <form action="addingArticles.php" method="POST">
+        <input id="title" name="title" type="text" placeholder="Title" style="width:100%; margin-bottom:10px;" required><br>
+        <input id="author" name="author" type="text" placeholder="Full name here" style="width:100%; margin-bottom:10px;" required><br>
+        <button type="submit" id="submit">Submit</button>
+    </form>
+  </div>
 
   <h2>Articles</h2>
-  <div id="articles-list"></div>
-  <script src="index.js"></script>
 </body>
 </html>
