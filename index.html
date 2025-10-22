@@ -3,11 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>The Wiki of Games</title>
+  <script src="https://cdn.tiny.cloud/1/4uk0fzz7q2ybbsb8tg0kb5dt5cavktkmnkviu8c4or5c2urs/tinymce/7/tinymce.min.js" referrerpolicy="origin" ></script>
+  <script>
+    tinymce.init({
+      selector: '#articleContent',
+      plugins: 'advlist autolink lists link image charmap preview anchor textcolor code',
+      toolbar: 'undo redo | styles | bold italic underline forecolor backcolor | alignleft aligncenter alignright | bullist numlist outdent indent | fontfamily fontsize | code preview',
+      menubar: false,
+      height: 300,
+      content_style: "body { font-family: 'Georgia', serif; font-size: 12pt; }"
+    });
+  </script>
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
     #article-form { margin-bottom: 20px; }
     textarea { width: 100%; height: 100px; }
-    .article-link { margin: 5px 0; display: block; }
   </style>
 </head>
 <body>
@@ -18,10 +28,10 @@
     <form action="addingArticles.php" method="POST">
         <input id="title" name="title" type="text" placeholder="Title" style="width:100%; margin-bottom:10px;" required><br>
         <input id="author" name="author" type="text" placeholder="Full name here" style="width:100%; margin-bottom:10px;" required><br>
+        <textarea id="articleContent" name="articleContent" placeholder="Write your article..."></textarea><br>
         <button type="submit" id="submit">Submit</button>
     </form>
+    <p><a href="articlesList.php">View all articles</a></p>
   </div>
-
-  <h2>Articles</h2>
 </body>
 </html>
