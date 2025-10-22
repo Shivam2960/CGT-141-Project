@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 $title = $_POST['title'];
 $author = $_POST['author'];
-$content = $_POST['articleContent'];  // the new field
+$content = $_POST['articleContent'];  
 
 $sql = "INSERT INTO ListOfArticles (title, author, articleContent) VALUES (?, ?, ?)";
 $stmt = $conn->prepare($sql);
