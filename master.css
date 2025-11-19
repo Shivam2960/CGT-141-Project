@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+/* Header bar */
+.head {
+  background-color: black;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* Each section inside header */
+.head div {
+  flex: 1;                     /* evenly divide space */
+  text-align: center;
+}
+
+/* Link styling */
+.head a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.head a:hover {
+  color: yellow;
+}
+
+/* Icon image */
+#icon img {
+  height: 60px;
+  width: auto;
+  border-radius: 8px;
+}
+
+/* Title */
+#name {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.image img {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 600px;
+}
+
+.description {
+  text-align: center;
+  padding: 20px;
+}
