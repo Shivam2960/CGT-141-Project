@@ -37,8 +37,8 @@ $result = $conn->query($sql);
       while($row = $result->fetch_assoc()) {
           echo "<div class='article'>";
           echo "<a href='viewArticle.php?id=" . $row['id'] . "'>";
-          echo htmlspecialchars($row['title']);
-          echo "</a> by " . htmlspecialchars($row['author']);
+          echo htmlspecialchars($row['title'] ?? '');
+          echo "</a> by " . htmlspecialchars($row['author'] ?? '');
           echo "</div>";
       }
   } else {

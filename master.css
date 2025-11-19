@@ -1,47 +1,101 @@
-body {
+/* ========= Global ========= */
+
+html, body {
   margin: 0;
+  padding: 0;
+}
+
+body {
   font-family: sans-serif;
 }
 
-/* Header bar */
+/* ========= Header / Top Bar ========= */
+
 .head {
   background-color: black;
   height: 75px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;   /* still spaces everything evenly */
+  padding: 0 30px;                  /* NEW: pushes all items inward */
+  box-sizing: border-box;
 }
 
-/* Each section inside header */
-.head div {
-  flex: 1;                     /* evenly divide space */
-  text-align: center;
+
+/* Brand (icon + text together) */
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
 }
 
-/* Link styling */
-.head a {
+.brand img {
+  height: 60px;
+  border-radius: 8px;
+
+  /* ADJUST THIS LINE */
+  margin-right: 8px;
+}
+
+
+/* Text next to icon */
+.brand span {
+  font-size: 24px;
+  font-weight: bold;
+  /* no margin-left so it “touches” the icon visually;
+     if too tight, you can add something like 4px */
+}
+
+/* Nav links across header */
+
+.nav-link {
   color: white;
   text-decoration: none;
   font-weight: bold;
   font-size: 18px;
 }
 
-.head a:hover {
+/* Hover styles (brand text + nav links) */
+
+.nav-link:hover,
+.brand:hover span {
   color: yellow;
 }
 
-/* Icon image */
-#icon img {
-  height: 60px;
-  width: auto;
-  border-radius: 8px;
+/* ========= Page Content ========= */
+
+.page-content {
+  padding: 20px;        /* space around page content */
 }
 
-/* Title */
+/* Optional title styling if you use #name elsewhere */
 #name {
   text-align: center;
   padding: 20px 0;
 }
+
+/* ========= Article Form ========= */
+
+#article-form {
+  margin-bottom: 20px;
+}
+
+#article-form input[type="text"],
+#article-form textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* Give textarea a reasonable height */
+#article-form textarea {
+  height: 100px;
+}
+
+/* ========= Generic image + description ========= */
 
 .image img {
   display: block;

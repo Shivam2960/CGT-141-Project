@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link href="master.css" rel="stylesheet" type="text/css" />
   <meta charset="UTF-8">
   <title>The Wiki of Games</title>
-  <script src="https://cdn.tiny.cloud/1/4uk0fzz7q2ybbsb8tg0kb5dt5cavktkmnkviu8c4or5c2urs/tinymce/7/tinymce.min.js" referrerpolicy="origin" ></script>
+
+  <script src="https://cdn.tiny.cloud/1/4uk0fzz7q2ybbsb8tg0kb5dt5cavktkmnkviu8c4or5c2urs/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
     tinymce.init({
       selector: '#articleContent',
@@ -14,24 +16,32 @@
       content_style: "body { font-family: 'Georgia', serif; font-size: 12pt; }"
     });
   </script>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    #article-form { margin-bottom: 20px; }
-    textarea { width: 100%; height: 100px; }
-  </style>
 </head>
 <body>
-  <h1>The Wiki of Games</h1>
+  <div class="head">
+    <a href="index.html" class="brand">
+      <img src="images/icon.png" alt="banner" />
+      <span>The Wiki of Games</span>
+    </a>
 
-  <div id="article-form">
-    <h2>Create New Article</h2>
-    <form action="addingArticles.php" method="POST">
-        <input id="title" name="title" type="text" placeholder="Title" style="width:100%; margin-bottom:10px;" required><br>
-        <input id="author" name="author" type="text" placeholder="Full name here" style="width:100%; margin-bottom:10px;" required><br>
-        <textarea id="articleContent" name="articleContent" placeholder="Write your article..."></textarea><br>
-        <button type="submit" id="submit">Submit</button>
-    </form>
-    <p><a href="articlesList.php">View all articles</a></p>
+    <a href="articlesList.php" class="nav-link">View Article</a>
+    <a href="addingArticles.php" class="nav-link">Write Article</a>
+    <a href="aboutwebsite.html" class="nav-link">About the Website</a>
   </div>
+
+  <main class="page-content">
+    <h1>The Wiki of Games</h1>
+    <div id="article-form">
+      <h2>Create New Article</h2>
+      <form action="addingArticles.php" method="POST">
+          <input id="title" name="title" type="text" placeholder="Title" required><br>
+          <input id="author" name="author" type="text" placeholder="Full name here" required><br>
+          <textarea id="articleContent" name="articleContent" placeholder="Write your article..."></textarea><br>
+          <button type="submit" id="submit">Submit</button>
+      </form>
+      <p><a href="articlesList.php">View all articles</a></p>
+      <p><a href="pokemon.html">this is ryu's article</a></p>
+    </div>
+  </main>
 </body>
 </html>
