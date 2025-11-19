@@ -54,3 +54,9 @@ body {
   text-align: center;
   padding: 20px;
 }
+
+.content {
+  display: flex;
+  align-items: center;
+
+}
