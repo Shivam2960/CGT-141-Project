@@ -3,49 +3,101 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 $servername = "localhost";
-$username = "wiki_user";
-$password = "CGT141Sucks!";
-$dbname = "articles";
+$username   = "wiki_user";
+$password   = "CGT141Sucks!";
+$dbname     = "articles";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT id, title, author FROM ListOfArticles ORDER BY title ASC";
+$sql    = "SELECT id, title, author FROM ListOfArticles ORDER BY title ASC";
 $result = $conn->query($sql);
 ?>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  >
+
+  <!-- Custom Styles -->
+  <link href="master.css" rel="stylesheet" type="text/css" />
+
   <meta charset="UTF-8">
-  <title>All Articles</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 30px; }
-    a { text-decoration: none; color: blue; }
-    a:hover { text-decoration: underline; }
-    .article { margin-bottom: 10px; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>All Articles - The Wiki of Games</title>
 </head>
 <body>
-  <h1>All Articles</h1>
-  <p><a href="index.html">← Back to Home</a></p>
 
-  <?php
-  if ($result->num_rows > 0) {
-      while($row = $result->fetch_assoc()) {
-          echo "<div class='article'>";
-          echo "<a href='viewArticle.php?id=" . $row['id'] . "'>";
-          echo htmlspecialchars($row['title'] ?? '');
-          echo "</a> by " . htmlspecialchars($row['author'] ?? '');
-          echo "</div>";
-      }
-  } else {
-      echo "<p>No articles found.</p>";
-  }
+  <!-- ======= HEADER ======= -->
+  <header class="head">
+    <div class="container-fluid">
+      <div class="head-inner d-flex align-items-center">
 
-  $conn->close();
-  ?>
+        <!-- Brand -->
+        <a href="index.html"
+           class="header-item brand-link d-flex align-items-center justify-content-center text-decoration-none">
+          <img src="images/icon.png" alt="banner" class="brand-icon">
+          <span class="brand-text">The Wiki of Games</span>
+        </a>
+
+        <!-- Navigation -->
+        <a href="articlesList.php"
+           class="header-item top-link text-decoration-none text-center">
+          View Article
+        </a>
+
+        <a href="addArticle.html"
+           class="header-item top-link text-decoration-none text-center">
+          Write Article
+        </a>
+
+        <a href="aboutwebsite.html"
+           class="header-item top-link text-decoration-none text-center">
+          About the Website
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======= MAIN CONTENT ======= -->
+  <main class="page-content container mt-4">
+    <h1 class="page-title mb-4">All Articles</h1>
+
+    <?php if ($result && $result->num_rows > 0): ?>
+      <div class="list-group">
+        <?php while ($row = $result->fetch_assoc()): ?>
+          <?php
+            $id     = (int)$row['id'];
+            $title  = htmlspecialchars($row['title']  ?? '', ENT_QUOTES, 'UTF-8');
+            $author = htmlspecialchars($row['author'] ?? '', ENT_QUOTES, 'UTF-8');
+          ?>
+          <a href="viewArticle.php?id=<?= $id ?>"
+             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            <span class="article-title"><?= $title ?></span>
+            <span class="text-muted small">by <?= $author ?></span>
+          </a>
+        <?php endwhile; ?>
+      </div>
+    <?php else: ?>
+      <p class="text-muted">No articles found.</p>
+    <?php endif; ?>
+
+    <?php $conn->close(); ?>
+  </main>
+
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous">
+  </script>
 </body>
 </html>
