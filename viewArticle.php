@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 
 $servername = "localhost";
 $username   = "wiki_user";
-$password   = "CGT141Sucks!";
+$password   = "CGT141ISGREAT!";
 $dbname     = "articles";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,56 +14,84 @@ if ($conn->connect_error) {
 
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
+// Flags for UI behavior
+$duplicateTitle = false;
+
 // Handle edits (POST)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $id > 0) {
     $newTitle   = trim($_POST['title'] ?? '');
     $editorName = trim($_POST['editor_name'] ?? '');
     $newContent = $_POST['articleContent'] ?? ''; // may contain HTML
 
-    // 1) Fetch current editors for this article
-    $sqlEditors = "SELECT editors FROM ListOfArticles WHERE id = ?";
-    $stmtEditors = $conn->prepare($sqlEditors);
-    $stmtEditors->bind_param("i", $id);
-    $stmtEditors->execute();
-    $resEditors = $stmtEditors->get_result();
-    $rowEditors = $resEditors->fetch_assoc();
-    $currentEditorsStr = $rowEditors['editors'] ?? '';
-    $stmtEditors->close();
-
-    // 2) Build new editors list (comma-separated, unique-ish)
-    $editorsArray = [];
-    if ($currentEditorsStr !== '') {
-        $editorsArray = array_map('trim', explode(',', $currentEditorsStr));
-    }
-
-    // 3) Add editor if provided and not already listed
-    if ($editorName !== '') {
-        if (!in_array($editorName, $editorsArray, true)) {
-            $editorsArray[] = $editorName;
-        }
-    }
-
-    $updatedEditorsStr = implode(', ', $editorsArray);
-
-    // 4) Only update if we have a non-empty title and content
-    if ($newTitle !== '' && trim(strip_tags($newContent)) !== '') {
-        $updateSql = "
-            UPDATE ListOfArticles
-            SET title = ?, editors = ?, articleContent = ?, updated_at = NOW()
-            WHERE id = ?
+    // --- 0) Check for duplicate title (another row with same title) ---
+    if ($newTitle !== '') {
+        $dupSql = "
+            SELECT id
+            FROM ListOfArticles
+            WHERE title = ?
+              AND id <> ?
+            LIMIT 1
         ";
-        $stmtUpdate = $conn->prepare($updateSql);
-        $stmtUpdate->bind_param("sssi", $newTitle, $updatedEditorsStr, $newContent, $id);
-        $stmtUpdate->execute();
-        $stmtUpdate->close();
+        $stmtDup = $conn->prepare($dupSql);
+        $stmtDup->bind_param("si", $newTitle, $id);
+        $stmtDup->execute();
+        $stmtDup->store_result();
+
+        if ($stmtDup->num_rows > 0) {
+            // Mark that we hit a duplicate; we will show a JS alert later
+            $duplicateTitle = true;
+        }
+
+        $stmtDup->close();
     }
 
-    // Redirect to avoid form resubmission on refresh
-    header("Location: viewArticle.php?id=" . $id);
-    exit;
+    // Only proceed with UPDATE if there is no duplicate
+    if (!$duplicateTitle) {
+        // 1) Fetch current editors for this article
+        $sqlEditors = "SELECT editors FROM ListOfArticles WHERE id = ?";
+        $stmtEditors = $conn->prepare($sqlEditors);
+        $stmtEditors->bind_param("i", $id);
+        $stmtEditors->execute();
+        $resEditors = $stmtEditors->get_result();
+        $rowEditors = $resEditors->fetch_assoc();
+        $currentEditorsStr = $rowEditors['editors'] ?? '';
+        $stmtEditors->close();
+
+        // 2) Build new editors list (comma-separated, unique-ish)
+        $editorsArray = [];
+        if ($currentEditorsStr !== '') {
+            $editorsArray = array_map('trim', explode(',', $currentEditorsStr));
+        }
+
+        // 3) Add editor if provided and not already listed
+        if ($editorName !== '') {
+            if (!in_array($editorName, $editorsArray, true)) {
+                $editorsArray[] = $editorName;
+            }
+        }
+
+        $updatedEditorsStr = implode(', ', $editorsArray);
+
+        // 4) Only update if we have a non-empty title and content
+        if ($newTitle !== '' && trim(strip_tags($newContent)) !== '') {
+            $updateSql = "
+                UPDATE ListOfArticles
+                SET title = ?, editors = ?, articleContent = ?, updated_at = NOW()
+                WHERE id = ?
+            ";
+            $stmtUpdate = $conn->prepare($updateSql);
+            $stmtUpdate->bind_param("sssi", $newTitle, $updatedEditorsStr, $newContent, $id);
+            $stmtUpdate->execute();
+            $stmtUpdate->close();
+        }
+
+        // Redirect to avoid form resubmission on refresh
+        header("Location: viewArticle.php?id=" . $id);
+        exit;
+    }
 }
 
-// Fetch article for display
+// Fetch article for display (after any attempted POST)
 $sql = "SELECT title, author, articleContent, created_at, updated_at, editors
         FROM ListOfArticles
         WHERE id = ?";
@@ -85,12 +113,12 @@ if ($article && !empty($article['editors'])) {
 <html lang="en">
 <head>
   <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-    crossorigin="anonymous"
-  >
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+  crossorigin="anonymous"
+>
 
   <!-- Custom Styles -->
   <link href="master.css" rel="stylesheet" type="text/css" />
@@ -145,6 +173,14 @@ if ($article && !empty($article['editors'])) {
       border: 1px solid #ffe58f;
     }
   </style>
+
+  <?php if ($duplicateTitle): ?>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        alert('An article with that title already exists. Please choose a different title.');
+      });
+    </script>
+  <?php endif; ?>
 </head>
 <body>
 
@@ -163,12 +199,12 @@ if ($article && !empty($article['editors'])) {
         <!-- Navigation -->
         <a href="articlesList.php"
            class="header-item top-link text-decoration-none text-center">
-          View Article
+          View Articles
         </a>
 
         <a href="addArticle.html"
            class="header-item top-link text-decoration-none text-center">
-          Write Article
+          Write Articles
         </a>
 
         <a href="aboutwebsite.html"
@@ -209,7 +245,6 @@ if ($article && !empty($article['editors'])) {
 
       <!-- Edit button + collapsible edit form -->
       <div class="mt-4">
-        <!-- Now blue to match the "Submit" style -->
         <button class="btn btn-primary" type="button" id="toggleEditBtn">
           Edit Article
         </button>
@@ -217,6 +252,7 @@ if ($article && !empty($article['editors'])) {
 
       <div id="editSection" class="edit-section mt-3" style="display: none;">
         <h2 class="h5 mb-3">Submit an Edit</h2>
+
         <form method="POST" action="viewArticle.php?id=<?php echo $id; ?>">
           <!-- Edit title -->
           <div class="mb-3">
@@ -225,7 +261,10 @@ if ($article && !empty($article['editors'])) {
                    id="title"
                    name="title"
                    class="form-control"
-                   value="<?php echo htmlspecialchars($article['title']); ?>"
+                   value="<?php
+                     // Keep user's attempted title on POST (including duplicate) else show current
+                     echo htmlspecialchars($_POST['title'] ?? $article['title']);
+                   ?>"
                    required>
           </div>
 
@@ -240,7 +279,8 @@ if ($article && !empty($article['editors'])) {
               <input type="text"
                      name="editor_name"
                      class="form-control"
-                     placeholder="Your name (optional)">
+                     placeholder="Your name (optional)"
+                     value="<?php echo htmlspecialchars($_POST['editor_name'] ?? ''); ?>">
             <?php else: ?>
               <div class="form-text mb-2">
                 Enter your name as the editor. Leave empty if you are the original author.
@@ -250,7 +290,8 @@ if ($article && !empty($article['editors'])) {
                      name="editor_name"
                      class="form-control"
                      list="editors_datalist"
-                     placeholder="Start typing your name or pick from the list">
+                     placeholder="Start typing your name or pick from the list"
+                     value="<?php echo htmlspecialchars($_POST['editor_name'] ?? ''); ?>">
               <datalist id="editors_datalist">
                 <?php foreach ($editorsList as $editor): ?>
                   <option value="<?php echo htmlspecialchars($editor, ENT_QUOTES, 'UTF-8'); ?>"></option>
@@ -265,7 +306,8 @@ if ($article && !empty($article['editors'])) {
             <textarea id="articleContentEdit"
                       name="articleContent"
                       placeholder="Edit the article content here..."><?php
-                echo $article['articleContent'] ?? '';
+                // Keep user's attempted content if there was a POST (including duplicate)
+                echo $_POST['articleContent'] ?? $article['articleContent'] ?? '';
             ?></textarea>
           </div>
 
@@ -282,11 +324,11 @@ if ($article && !empty($article['editors'])) {
   </main>
 
   <!-- Bootstrap JS -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous">
-  </script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmX5n0Pj8Jh8e6gqKq6HgMHpmwY1vZg8tBTtPluXftdKZ7N"
+  crossorigin="anonymous">
+</script>
 
   <script>
     // Simple toggle for the edit form
@@ -302,6 +344,13 @@ if ($article && !empty($article['editors'])) {
         }
       });
     }
+
+    // If there was a duplicate title, keep the edit section open
+    <?php if ($duplicateTitle): ?>
+      if (editSection) {
+        editSection.style.display = 'block';
+      }
+    <?php endif; ?>
   </script>
 
 </body>

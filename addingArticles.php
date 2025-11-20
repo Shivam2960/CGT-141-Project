@@ -7,7 +7,7 @@ mysqli_report(MYSQLI_REPORT_OFF);
 
 $servername = "localhost";
 $username   = "wiki_user";
-$password   = "CGT141Sucks!";
+$password   = "CGT141ISGREAT!";
 $dbname     = "articles";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
