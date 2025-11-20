@@ -12,8 +12,24 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Fetch unofficial articles (user-submitted) sorted alphabetically by title
 $sql    = "SELECT id, title, author FROM ListOfArticles ORDER BY title ASC";
 $result = $conn->query($sql);
+
+// Define official articles (static HTML pages on the server)
+$officialArticles = [
+    [
+        'title'  => 'Pokemon Red and Blue Review',
+        'author' => 'Ryu',
+        'path'   => 'pokemon.html'
+    ],
+    // Add more official articles here as you create them:
+    // [
+    //     'title'  => 'Super Mario Bros. Retrospective',
+    //     'author' => 'Shivam',
+    //     'path'   => 'smb_retro.html'
+    // ],
+];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,26 +87,60 @@ $result = $conn->query($sql);
   <main class="page-content container mt-4">
     <h1 class="page-title mb-4">All Articles</h1>
 
-    <?php if ($result && $result->num_rows > 0): ?>
-      <div class="list-group">
-        <?php while ($row = $result->fetch_assoc()): ?>
-          <?php
-            $id     = (int)$row['id'];
-            $title  = htmlspecialchars($row['title']  ?? '', ENT_QUOTES, 'UTF-8');
-            $author = htmlspecialchars($row['author'] ?? '', ENT_QUOTES, 'UTF-8');
-          ?>
-          <a href="viewArticle.php?id=<?= $id ?>"
-             class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-            <span class="article-title"><?= $title ?></span>
-            <span class="text-muted small">by <?= $author ?></span>
-          </a>
-        <?php endwhile; ?>
-      </div>
-    <?php else: ?>
-      <p class="text-muted">No articles found.</p>
-    <?php endif; ?>
+    <!-- OFFICIAL ARTICLES -->
+    <section class="mb-5">
+      <h2 class="mb-3">Official Articles</h2>
 
-    <?php $conn->close(); ?>
+      <?php if (!empty($officialArticles)): ?>
+        <div class="list-group">
+          <?php foreach ($officialArticles as $article): ?>
+            <?php
+              $title  = htmlspecialchars($article['title'], ENT_QUOTES, 'UTF-8');
+              $author = htmlspecialchars($article['author'], ENT_QUOTES, 'UTF-8');
+              $path   = htmlspecialchars($article['path'], ENT_QUOTES, 'UTF-8');
+            ?>
+            <a href="<?= $path ?>"
+               class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              <span class="article-title"><?= $title ?></span>
+              <span class="text-muted small">by <?= $author ?></span>
+            </a>
+          <?php endforeach; ?>
+        </div>
+      <?php else: ?>
+        <p class="text-muted">No official articles have been published yet.</p>
+      <?php endif; ?>
+    </section>
+
+    <!-- UNOFFICIAL ARTICLES -->
+    <section class="mb-5">
+      <h2 class="mb-3">Unofficial Articles</h2>
+
+      <?php if ($result && $result->num_rows > 0): ?>
+        <div class="list-group">
+          <?php while ($row = $result->fetch_assoc()): ?>
+            <?php
+              $id     = (int)$row['id'];
+              $title  = htmlspecialchars($row['title']  ?? '', ENT_QUOTES, 'UTF-8');
+              $author = htmlspecialchars($row['author'] ?? '', ENT_QUOTES, 'UTF-8');
+            ?>
+            <a href="viewArticle.php?id=<?= $id ?>"
+               class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+              <span class="article-title"><?= $title ?></span>
+              <span class="text-muted small">by <?= $author ?></span>
+            </a>
+          <?php endwhile; ?>
+        </div>
+      <?php else: ?>
+        <p class="text-muted">No unofficial articles have been submitted yet.</p>
+      <?php endif; ?>
+    </section>
+
+    <?php
+      if ($result) {
+          $result->free();
+      }
+      $conn->close();
+    ?>
   </main>
 
   <!-- Bootstrap JS -->
@@ -99,5 +149,6 @@ $result = $conn->query($sql);
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous">
   </script>
+
 </body>
 </html>
