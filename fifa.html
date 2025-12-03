@@ -1,66 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="master2.css" rel="stylesheet" type="text/css" />
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  >
+
+  <!-- Shared site styles -->
+  <link href="master.css" rel="stylesheet" type="text/css">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>FC Series (FIFA) – The Wiki of Games</title>
 </head>
+
 <body>
-    <div class="overlay"></div>
-    <div class="head">
-        <div id="icon"><a href="index.html"></a><img src="images/beach.jpg" alt="banner" /></div>
-        <div id="home"><a href="articleList.php">View Article</a></div>
-        <div id="write"><a href="addingArticles.php">Write Article</a></div>
-        <div id="about"><a href="aboutwebsite.html">About the Website</a></div>
+
+  <!-- ======= HEADER (same as other pages) ======= -->
+  <header class="head">
+    <div class="container-fluid">
+      <div class="head-inner">
+
+        <!-- Brand -->
+        <a href="index.html"
+           class="header-item brand-link d-flex align-items-center justify-content-center text-decoration-none"
+           aria-label="The Wiki of Games homepage">
+          <img src="images/icon.png" alt="The Wiki of Games logo" class="brand-icon">
+          <span class="brand-text">The Wiki of Games</span>
+        </a>
+
+        <!-- Navigation -->
+        <nav class="main-nav d-flex flex-grow-1 justify-content-center" aria-label="Main navigation">
+          <a href="articleslist.php"
+             class="header-item top-link text-decoration-none text-center">
+            View Articles
+          </a>
+
+          <a href="addarticle.html"
+             class="header-item top-link text-decoration-none text-center">
+            Write Articles
+          </a>
+
+          <a href="aboutwebsite.html"
+             class="header-item top-link text-decoration-none text-center">
+            About the Website
+          </a>
+        </nav>
+
+      </div>
     </div>
-    
+  </header>
 
+  <!-- ======= MAIN CONTENT ======= -->
+  <main class="page-content container mt-4 mb-5" role="main">
 
-    <div class="main">
-        <div id="name">
-            <h1>FC Series(FIFA)</h1>
-            <p>The FIFA series, created by EA Sports, began in 1993 with FIFA International Soccer, 
-            one of the first football games to feature an official license from FIFA. This partnership 
-            helped the series stand out early, allowing it to include real national teams and later 
-            real clubs, players, and leagues. 
-
-            As technology advanced, FIFA embraced more realistic physics, player behavior, and broadcast-style 
-            presentation, making each annual release feel closer to real football. 
-
-            In 2022, EA and FIFA ended their long licensing agreement. This brought the “FIFA” branding to an end 
-            with FIFA 23, and starting in 2023, the series continued under a new title: EA Sports FC. </p>
-        </div>
-        <div class="content">
-            <div class="image">
-                <div class="image1">
-                    <img src="images/FC26.jpg" alt="banner" />
-                </div>
-                <div class="image2">
-                    <img src="images/duringPlaying.jpg" alt="banner" />
-                </div>
-            </div>
-
-            <div class="description">
-                <p>The FIFA series, created by EA Sports, has been one of the 
-                    world’s most iconic football game franchises since its debut 
-                    in 1993. Each yearly release introduced improved graphics, 
-                    smoother gameplay, and a growing roster of real teams, players, 
-                    and leagues. With modes like Career, Ultimate Team, and Online Seasons, 
-                    the series let players build clubs, manage teams, and compete globally. 
-                    In 2023, after ending its partnership with FIFA, EA rebranded the series 
-                    as EA Sports FC, continuing the same gameplay foundation while expanding 
-                    licensing and features. FC represents a new chapter, but the spirit of authentic 
-                    football gaming remains unchanged.</p>
-            </div>
-        </div>
+    <!-- Back button (same spot as LoL / unofficial articles) -->
+    <div class="mb-3">
+      <a href="articleslist.php" class="btn btn-primary">
+        &larr; Back to Articles
+      </a>
     </div>
-    
 
+    <!-- Title + meta OUTSIDE the white box -->
+    <h1 class="mb-3">FC Series (FIFA)</h1>
 
+    <div class="article-meta small text-muted mb-3">
+      <p class="mb-1"><strong>Original Author:</strong> Ryunosuke Matsuda</p>
+      <p class="mb-1"><strong>Editors:</strong> None</p>
+      <p class="mb-0"><strong>Date Written:</strong> Dec 3rd, 2025</p>
+    </div>
 
+    <!-- White article card (same class as LoL / NBA / Minecraft / Pokémon) -->
+    <article class="article-content shadow-sm bg-white p-4 rounded">
 
-        
-    
+      <!-- Intro / history -->
+      <section class="fs-5 mb-4">
+        <p>
+          The <strong>FIFA</strong> series, created by EA Sports, began in 1993 with
+          <em>FIFA International Soccer</em>, one of the first football games to feature
+          an official license from FIFA. This partnership helped the series stand out early,
+          allowing it to include real national teams and, later, real clubs, players, and leagues.
+          As technology advanced, FIFA embraced more realistic physics, player behavior, and
+          broadcast-style presentation, making each annual release feel closer to real football.
+        </p>
+        <p>
+          In 2022, EA and FIFA ended their long licensing agreement. This brought the “FIFA” branding
+          to an end with <em>FIFA 23</em>, and starting in 2023 the series continued under a new title:
+          <strong>EA Sports FC</strong>. The rebrand kept the core gameplay foundation while opening
+          the door to new partnerships, licensing opportunities, and features.
+        </p>
+      </section>
+
+      <!-- Image row (optional but still inside the same white card) -->
+      <section class="mb-4" aria-label="EA Sports FC promotional and gameplay images">
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <img src="images/FC26.jpg"
+                 class="img-fluid rounded"
+                 alt="Promotional image for an EA Sports FC game">
+          </div>
+          <div class="col-12 col-md-6">
+            <img src="images/duringPlaying.jpg"
+                 class="img-fluid rounded"
+                 alt="In-game screenshot of a match in EA Sports FC">
+          </div>
+        </div>
+      </section>
+
+      <!-- Modes / experience -->
+      <section class="fs-5">
+        <p>
+          The FIFA series, now known as <strong>EA Sports FC</strong>, has remained one of the
+          world’s most iconic football game franchises since its debut. Each yearly release
+          introduced improved graphics, smoother gameplay, and an expanding roster of real teams,
+          players, and leagues. With modes like Career, Ultimate Team, and Online Seasons,
+          the series lets players build clubs, manage squads, and compete globally.
+        </p>
+        <p>
+          After the rebrand to EA Sports FC, the series continued with the same core football
+          experience while evolving its presentation and features. but the spirit of authentic football gaming, 
+          such as realistic matches, strategic team-building, and high-stakes online competition, remains at
+          the heart of the series.
+        </p>
+      </section>
+
+    </article>
+
+  </main>
+
+  <!-- Bootstrap JS (optional but consistent with other pages) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmX5n0Pj8Jh8e6gqKq6HgMHpmwY1vZg8tBTtPluXftdKZ7N"
+    crossorigin="anonymous">
+  </script>
+
 </body>
 </html>

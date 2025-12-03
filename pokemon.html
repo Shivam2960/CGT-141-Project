@@ -1,65 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="master1.css" rel="stylesheet" type="text/css" />
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  >
+
+  <!-- Custom Styles -->
+  <link href="master.css" rel="stylesheet" type="text/css">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Pokémon – The Wiki of Games</title>
 </head>
+
 <body>
-    <div class="overlay"></div>
-    <div class="head">
-        <div id="icon"><a href="index.html"></a><img src="images/beach.jpg" alt="banner" /></div>
-        <div id="home"><a href="articleList.php">View Article</a></div>
-        <div id="write"><a href="addingArticles.php">Write Article</a></div>
-        <div id="about"><a href="aboutwebsite.html">About the Website</a></div>
+
+  <!-- ======= HEADER ======= -->
+  <header class="head">
+    <div class="container-fluid">
+      <div class="head-inner">
+
+        <!-- Brand -->
+        <a href="index.html"
+           class="header-item brand-link d-flex align-items-center justify-content-center text-decoration-none"
+           aria-label="The Wiki of Games homepage">
+          <img src="images/icon.png" alt="The Wiki of Games logo" class="brand-icon">
+          <span class="brand-text">The Wiki of Games</span>
+        </a>
+
+        <!-- Navigation -->
+        <nav class="main-nav d-flex flex-grow-1 justify-content-center" aria-label="Main navigation">
+          <a href="articleslist.php"
+             class="header-item top-link text-decoration-none text-center">
+            View Articles
+          </a>
+
+          <a href="addarticle.html"
+             class="header-item top-link text-decoration-none text-center">
+            Write Articles
+          </a>
+
+          <a href="aboutwebsite.html"
+             class="header-item top-link text-decoration-none text-center">
+            About the Website
+          </a>
+        </nav>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ======= MAIN CONTENT ======= -->
+  <main class="page-content container mt-4 mb-5" role="main">
+
+    <!-- Back button (same spot as unofficial articles / other official pages) -->
+    <div class="mb-3">
+      <a href="articleslist.php" class="btn btn-primary">
+        &larr; Back to Articles
+      </a>
     </div>
 
+    <!-- Title + metadata OUTSIDE the white box -->
+    <h1 class="mb-3">Pokémon</h1>
 
-    <div class="main">
-        <div id="name">
-            <h1>Pokemon</h1>
-            <p>electronic game series from Nintendo that debuted in Japan in February 1996 
-            as Pokémon Green and Pokémon Red. The franchise later became wildly popular 
-            in the United States and around the world. The series, originally produced 
-            for the company’s Game Boy line of handheld consoles, was introduced in 1998 
-            to the United States with two titles, known to fans as Red and Blue. In the 
-            games, players assume the role of Pokémon trainers, obtaining cartoon monsters 
-            and developing them to battle other Pokémon. Pokémon became one of the most 
-            successful video game franchises in the world. The thing that the players do in 
-            the game is to capture, grow, and ballte pokemons.</p>
-        </div>
-        <div class="content">
-            <div class="image">
-                <div class="image1">
-                    <img src="images/pokemonGamePic.jpg" alt="banner" />
-                </div>
-                <div class="image2">
-                    <img src="images/pokemon.jpeg" alt="banner" />
-                </div>
-            </div>
-
-            <div class="description">
-                <p>Pokémon is a role-playing adventure game series where you explore a vibrant 
-                world filled with unique creatures called Pokémon. Each Pokémon has its own 
-                personality, abilities, and type. As a player, you travel from town to town, catching Pokémon, 
-                training them, and building a team strong enough to take on rival trainers and 
-                powerful Gym Leaders.<br><br>
-
-                Along the way, you meet all kinds of characters, uncover small stories hidden in each 
-                region, and watch your Pokémon grow stronger through battles and friendship. The games 
-                are designed to be relaxing and exciting at the same time—there’s no one “right” way to 
-                play. Some people like collecting every Pokémon, some enjoy battling competitively, and 
-                others simply want to explore the world at their own pace.</p>
-            </div>
-        </div>
+    <div class="article-meta small text-muted mb-3">
+      <p class="mb-1"><strong>Original Author:</strong> Ryunosuke Matsuda</p>
+      <p class="mb-1"><strong>Editors:</strong> None</p>
+      <p class="mb-0"><strong>Date Written:</strong> Dec 3rd, 2025</p>
     </div>
-    
 
+    <!-- White card just for the article body, like NBA 2K / Minecraft / LoL -->
+    <article class="article-content shadow-sm bg-white p-4 rounded">
 
+      <!-- Intro section -->
+      <section class="fs-5 mb-4">
+        <p>
+          <strong>Pokémon</strong> is an electronic game series from Nintendo that debuted in Japan in
+          February 1996 as <em>Pokémon Green</em> and <em>Pokémon Red</em>. The franchise later became wildly
+          popular in the United States and around the world. The series, originally produced for the
+          company’s Game Boy handheld consoles, was introduced to the United States in 1998 with two
+          titles known to fans as <em>Red</em> and <em>Blue</em>. In the games, players assume the role of Pokémon
+          trainers, obtaining cartoon monsters and developing them to battle other Pokémon. Over time,
+          Pokémon became one of the most successful video game franchises in the world. A core part of the
+          experience is capturing, growing, and battling Pokémon.
+        </p>
+      </section>
 
+      <!-- Images row -->
+      <section class="mb-4" aria-label="Pokémon screenshots and artwork">
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <img src="images/pokemonGamePic.jpg"
+                 class="img-fluid rounded"
+                 alt="Gameplay screenshot from a Pokémon game">
+          </div>
+          <div class="col-12 col-md-6">
+            <img src="images/pokemon.jpeg"
+                 class="img-fluid rounded"
+                 alt="Artwork featuring Pokémon characters">
+          </div>
+        </div>
+      </section>
 
-        
-    
+      <!-- Description / overview section -->
+      <section class="fs-5">
+        <p>
+          Pokémon is a role-playing adventure game series where you explore a vibrant world filled with
+          unique creatures called Pokémon. Each Pokémon has its own personality, abilities, and type. As a
+          player, you travel from town to town, catching Pokémon, training them, and building a team strong
+          enough to take on rival trainers and powerful Gym Leaders.
+        </p>
+        <p>
+          Along the way, you meet all kinds of characters, uncover small stories hidden in each region, and
+          watch your Pokémon grow stronger through battles and friendship. The games are designed to be both
+          relaxing and exciting and there’s no single “right” way to play. Some players enjoy collecting every
+          Pokémon, others focus on competitive battling, and many simply want to explore the world at their
+          own pace.
+        </p>
+      </section>
+
+    </article>
+
+  </main>
+
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous">
+  </script>
+
 </body>
 </html>

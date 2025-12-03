@@ -44,6 +44,16 @@ $officialArticles = [
     'author' => 'Ryan He',
     'path'   => 'leagueoflegends.html'
 ],
+    [
+    'title'  => 'FC Series (FIFA)',
+    'author' => 'Ryunosuke Matsuda',
+    'path'   => 'fifa.html'
+],
+    [
+    'title'  => 'Pokemon',
+    'author' => 'Ryunosuke Matsuda',
+    'path'   => 'pokemon.html'
+],
 ];
 ?>
 <!DOCTYPE html>
