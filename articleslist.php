@@ -75,41 +75,46 @@ $officialArticles = [
 
 </head>
 <body>
+  <!-- ======= HEADER ======= -->
+  <header class="head">
+    <div class="container-fluid">
+      <div class="head-inner">
 
-  <!-- ========= HEADER ========= -->
-<header class="head">
-  <div class="container-fluid">
-    <div class="head-inner">
-
-      <!-- Brand -->
-      <a href="index.html"
-         class="header-item brand-link d-flex align-items-center justify-content-center text-decoration-none"
-         aria-label="The Wiki of Games homepage">
-        <img src="images/icon.png" alt="The Wiki of Games logo" class="brand-icon">
-        <span class="brand-text">The Wiki of Games</span>
-      </a>
-
-      <!-- Navigation -->
-      <nav class="main-nav d-flex flex-grow-1 justify-content-center" aria-label="Main">
-        <a href="articleslist.php"
-           class="header-item top-link text-decoration-none text-center">
-          View Articles
+        <!-- Brand -->
+        <a href="index.html"
+           class="header-item brand-link d-flex align-items-center justify-content-center text-decoration-none"
+           aria-label="The Wiki of Games homepage">
+          <img src="images/icon.png" alt="The Wiki of Games logo" class="brand-icon">
+          <span class="brand-text">The Wiki of Games</span>
         </a>
 
-        <a href="addarticle.html"
-           class="header-item top-link text-decoration-none text-center">
-          Write Articles
-        </a>
+        <!-- Navigation -->
+        <nav class="main-nav d-flex flex-grow-1 justify-content-center" aria-label="Main navigation">
+          <!-- NEW: Home Page link right after the brand -->
+          <a href="index.html"
+             class="header-item top-link text-decoration-none text-center">
+            Home Page
+          </a>
 
-        <a href="aboutwebsite.html"
-           class="header-item top-link text-decoration-none text-center">
-          About the Website
-        </a>
-      </nav>
+          <a href="articleslist.php"
+             class="header-item top-link text-decoration-none text-center">
+            View Articles
+          </a>
 
+          <a href="addarticle.html"
+             class="header-item top-link text-decoration-none text-center">
+            Write Articles
+          </a>
+
+          <a href="aboutwebsite.html"
+             class="header-item top-link text-decoration-none text-center">
+            About the Website
+          </a>
+        </nav>
+
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
 
   <!-- ========= MAIN CONTENT ========= -->
