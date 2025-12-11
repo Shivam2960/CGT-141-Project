@@ -12,7 +12,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Fetch unofficial articles (database)
 $sql = "
   SELECT id, title, author
   FROM ListOfArticles
@@ -26,7 +25,6 @@ $sql = "
 ";
 $result = $conn->query($sql);
 
-// Static official articles
 $officialArticles = [
 
     [
@@ -69,13 +67,11 @@ $officialArticles = [
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Bootstrap CSS -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet"
   >
 
-  <!-- Custom CSS -->
   <link href="master.css" rel="stylesheet" type="text/css">
 
   <meta charset="UTF-8">
@@ -85,12 +81,10 @@ $officialArticles = [
 
 </head>
 <body>
-  <!-- ======= HEADER ======= -->
   <header class="head">
     <div class="container-fluid">
       <div class="head-inner">
 
-        <!-- Brand -->
         <a href="index.html"
            class="header-item brand-link d-flex align-items-center justify-content-center text-decoration-none"
            aria-label="The Wiki of Games homepage">
@@ -98,9 +92,7 @@ $officialArticles = [
           <span class="brand-text">The Wiki of Games</span>
         </a>
 
-        <!-- Navigation -->
         <nav class="main-nav d-flex flex-grow-1 justify-content-center" aria-label="Main navigation">
-          <!-- NEW: Home Page link right after the brand -->
           <a href="index.html"
              class="header-item top-link text-decoration-none text-center">
             Home Page
@@ -127,17 +119,13 @@ $officialArticles = [
   </header>
 
 
-  <!-- ========= MAIN CONTENT ========= -->
   <main class="page-content container mt-4">
 
     <h1 class="page-title mb-4">All Articles</h1>
 
 
-    <!-- ========= OFFICIAL ARTICLES ========= -->
-<!-- ========= OFFICIAL ARTICLES ========= -->
 <section class="mb-5" aria-labelledby="official-heading">
 
-  <!-- Float box RIGHT of official section title -->
 <div class="article-status-box">
   <h2 class="h6 mb-2">Article Types</h2>
   <p class="mb-1">
@@ -147,10 +135,9 @@ $officialArticles = [
     <strong>Unofficial Articles</strong> are community-written, unverified, and editable.
   </p>
 
-  <!-- ADD THIS NEW LINE -->
   <p class="conversion-note">
     Once an unofficial article is in a good state, it will be converted into an official
-    article by the developers of this website.
+    article by the developers of this website during their free time.
   </p>
 </div>
 
@@ -179,14 +166,12 @@ $officialArticles = [
     <p class="text-muted">No official articles have been published yet.</p>
   <?php endif; ?>
 
-  <!-- Clear the float so unofficial starts BELOW box -->
   <div class="clear-floats"></div>
 
 </section>
 
 
 
-<!-- ========= UNOFFICIAL ARTICLES ========= -->
 <section class="mb-5" aria-labelledby="unofficial-heading">
   <h2 id="unofficial-heading" class="mb-3">Unofficial Articles</h2>
 
@@ -219,7 +204,6 @@ $officialArticles = [
   </main>
 
 
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

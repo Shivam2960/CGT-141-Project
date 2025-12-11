@@ -1,8 +1,7 @@
 <?php
 error_reporting(E_ALL);
-ini_set('display_errors', 0); // don't dump HTML errors to the browser
+ini_set('display_errors', 0); 
 
-// Turn off mysqli's automatic exceptions so we can handle errors ourselves
 mysqli_report(MYSQLI_REPORT_OFF);
 
 $servername = "localhost";
@@ -22,7 +21,6 @@ $content = $_POST['articleContent'] ?? '';
 
 
 if ($title === '' || $author === '' || trim(strip_tags($content)) === '') {
-    // show an error instead of inserting
     die('Title, author, and content are required.');
 }
 $sql  = "INSERT INTO ListOfArticles (title, author, articleContent) VALUES (?, ?, ?)";
@@ -36,12 +34,10 @@ if (!$stmt) {
 
 $stmt->bind_param("sss", $title, $author, $content);
 
-// Safely execute and catch duplicate errors
 try {
     if ($stmt->execute()) {
         echo "SUCCESS";
     } else {
-        // In case execute() returns false without throwing
         if ($stmt->errno === 1062 || $conn->errno === 1062) {
             echo "DUPLICATE";
         } else {
@@ -49,7 +45,6 @@ try {
         }
     }
 } catch (mysqli_sql_exception $e) {
-    // If exceptions are still thrown, handle them here
     if ($e->getCode() === 1062) {
         echo "DUPLICATE";
     } else {

@@ -1,4 +1,3 @@
-/* ========= Global ========= */
 
 html, body {
   margin: 0;
@@ -9,25 +8,21 @@ body {
   font-family: sans-serif;
 }
 
-/* ========= Header / Top Bar ========= */
-/* Black bar across top, with padding from screen edges */
 
 .head {
   background-color: black;
-  padding: 0.5rem 1.5rem;  /* space away from edges of screen */
+  padding: 0.5rem 1.5rem;  
 }
 
-/* Inner flex row, centered and constrained for nice layout */
 .head-inner {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 2rem;              /* fixed gap between items (brand + 3 labels) */
+  gap: 2rem;             
 }
 
-/* Each thing in the header (brand or label) is a flex "cell"
-   with equal width and centered content */
+
 .header-item {
   flex: 1 1 0;
   display: flex;
@@ -38,41 +33,35 @@ body {
   font-size: 1rem;
 }
 
-/* Brand (icon + text as one clickable thing) */
 .brand-link {
   color: white;
 }
 
-/* Space between icon and text, but entire area is clickable */
 .brand-icon {
   height: 55px;
   border-radius: 8px;
-  margin-right: 8px;    /* visual gap between icon and text */
+  margin-right: 8px;    
 }
 
 .brand-text {
   font-size: 1.4rem;
 }
 
-/* Labels on the right */
 .top-link {
   color: white;
-  padding: 0.3rem 0.5rem; /* gives a bit of click area */
+  padding: 0.3rem 0.5rem; 
 }
 
-/* Hover styles */
 .top-link:hover,
 .brand-link:hover .brand-text {
   color: yellow;
 }
 
-/* ========= Page Content ========= */
 
 .page-content {
-  padding-bottom: 40px;  /* some breathing room at bottom */
+  padding-bottom: 40px;  
 }
 
-/* ========= Article Form (extra safety if not using Bootstrap classes) ========= */
 
 #article-form input[type="text"],
 #article-form textarea {
@@ -81,12 +70,10 @@ body {
   font-family: inherit;
 }
 
-/* TinyMCE textarea height handled by JS; this is only a baseline */
 #article-form textarea {
   min-height: 100px;
 }
 
-/* ========= Optional Image + Description Layout (if used later) ========= */
 
 .image img {
   display: block;
@@ -119,25 +106,25 @@ body {
 
 .carousel-item img {
   object-fit: contain;
-  height: 450px;     /* or whatever height you want */
+  height: 450px;   
   width: 100%;
-  background-color: #FFE766; /* optional, fills empty space */
+  background-color: #FFE766; 
 }
 
 body {
-  background-color: #FFE766; /* softer yellow */
+  background-color: #FFE766; 
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  background-image: none; /* remove default white arrows */
+  background-image: none; 
 }
 
 .carousel-control-prev-icon::after,
 .carousel-control-next-icon::after {
   content: '‹';
   font-size: 48px;
-  color: black;   /* BLACK arrows */
+  color: black;  
   font-weight: bold;
 }
 
@@ -146,11 +133,11 @@ body {
 }
 
 .carousel-indicators [data-bs-target] {
-  background-color: black;       /* inactive dots */
+  background-color: black;       
 }
 
 .carousel-indicators .active {
-  background-color: black !important; /* active dot */
+  background-color: black !important; 
 }
 
 .carousel-inner {
@@ -165,14 +152,13 @@ body {
 }
 
 .carousel-control-prev {
-  left: calc(50% - 350px); /* half width minus half the image width */
+  left: calc(50% - 350px); 
 }
 
 .carousel-control-next {
   right: calc(50% - 350px);
 }
 
-/* Caption text colors */
 .carousel-caption h3,
 .carousel-caption p {
   color: white;
@@ -180,7 +166,7 @@ body {
 .carousel-caption {
   padding: 4px 10px !important;
   background: rgba(0, 0, 0, 0.5);
-    left: calc(50% - 350px); /* half width minus half the image width */
+    left: calc(50% - 350px);
     right: calc(50% - 350px);
   border-radius: 6px;
   bottom: 40px !important;
@@ -199,19 +185,17 @@ body {
 
 .page-title {
   text-align: center;
-  font-size: 2rem;              /* slightly smaller than the default huge h1 */
-  font-weight: 700;             /* bold like your nav bar */
-  color: black;                 /* matches the carousel + nav style */
+  font-size: 2rem;             
+  font-weight: 700;          
+  color: black;                
   margin-bottom: 20px;
-  letter-spacing: 0.5px;        /* subtle polish */
+  letter-spacing: 0.5px;     
 }
-/* ========= Article List: Official vs Unofficial Float ========= */
 
 .article-status-box {
   float: right;
   width: 260px;
   padding: 1rem;
-  /* push it down to about where the first list item starts */
   margin: 3.35rem 0 1rem 1.5rem;
   background-color: #f5f5f5;
   border: 1px solid #ccc;
@@ -220,11 +204,11 @@ body {
 }
 
 .article-status-box .conversion-note {
-  margin-top: 6px;       /* reduces spacing above the sentence */
-  margin-bottom: 0;      /* no extra padding at bottom */
-  color: #000;           /* ensure black text */
-  font-size: 0.85rem;    /* optional: slightly smaller, like helper text */
-  line-height: 1.3;      /* keeps it compact */
+  margin-top: 6px;       
+  margin-bottom: 0;     
+  color: #000;          
+  font-size: 0.85rem;    
+  line-height: 1.3;     
 }
 
 .object-fit-cover {
@@ -232,13 +216,11 @@ body {
 }
 
 
-/* Keeps following content (Unofficial Articles section) BELOW the float */
 .clear-floats {
-  clear: both;                      /* <-- CLEAR */
+  clear: both;                     
 }
 
-/* ========= Simple responsiveness tweak ========= */
-/* On very small screens, let the header items wrap so it doesn't crush */
+
 
 @media (max-width: 600px) {
   .head-inner {
@@ -257,6 +239,6 @@ body {
     .article-status-box {
     float: none;
     width: 100%;
-    margin: 0 0 1rem 0; /* full-width block above the list */
+    margin: 0 0 1rem 0; 
   }
 }

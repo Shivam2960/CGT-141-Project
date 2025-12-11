@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Bootstrap CSS -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -9,7 +8,6 @@
     crossorigin="anonymous"
   >
 
-  <!-- Custom Styles -->
   <link href="master.css" rel="stylesheet" type="text/css" />
 
   <meta charset="UTF-8">
@@ -17,7 +15,6 @@
 
   <title>Write an Article - The Wiki of Games</title>
 
-  <!-- TinyMCE -->
 <script src="https://cdn.tiny.cloud/1/4uk0fzz7q2ybbsb8tg0kb5dt5cavktkmnkviu8c4or5c2urs/tinymce/7/tinymce.min.js"></script>
   <script>
 tinymce.init({
@@ -36,12 +33,10 @@ tinymce.init({
 
 <body>
 
-  <!-- ======= HEADER ======= -->
   <header class="head">
     <div class="container-fluid">
       <div class="head-inner">
 
-        <!-- Brand -->
         <a href="index.html"
            class="header-item brand-link d-flex align-items-center justify-content-center text-decoration-none"
            aria-label="The Wiki of Games homepage">
@@ -49,9 +44,7 @@ tinymce.init({
           <span class="brand-text">The Wiki of Games</span>
         </a>
 
-        <!-- Navigation -->
         <nav class="main-nav d-flex flex-grow-1 justify-content-center" aria-label="Main navigation">
-          <!-- NEW: Home Page link right after the brand -->
           <a href="index.html"
              class="header-item top-link text-decoration-none text-center">
             Home Page
@@ -78,13 +71,10 @@ tinymce.init({
   </header>
 
 
-  <!-- ======= MAIN CONTENT ======= -->
   <main class="page-content container mt-4">
     <h1 class="page-title mb-4">Write a New Article</h1>
 
-    <!-- IMPORTANT: only ONE form -->
     <form id="articleForm" action="addingarticles.php" method="POST">
-      <!-- Title -->
       <div class="mb-3">
         <label for="title" class="form-label"><strong>Title</strong></label>
         <input id="title" name="title" type="text"
@@ -92,7 +82,6 @@ tinymce.init({
                placeholder="Enter the article title" required>
       </div>
 
-      <!-- Author -->
       <div class="mb-3">
         <label for="author" class="form-label"><strong>Author</strong></label>
         <input id="author" name="author" type="text"
@@ -100,28 +89,24 @@ tinymce.init({
                placeholder="Your full name" required>
       </div>
 
-      <!-- Article Content (TinyMCE) -->
       <div class="mb-3">
         <label for="articleContent" class="form-label"><strong>Article Content</strong></label>
         <textarea id="articleContent" name="articleContent"
                   placeholder="Write your article here..."></textarea>
       </div>
 
-      <!-- Submit -->
       <button type="submit" id="submit" class="btn btn-primary">
         Submit Article
       </button>
     </form>
   </main>
 
-  <!-- Bootstrap JS -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous">
   </script>
 
-  <!-- AJAX submit + validation -->
   <script>
 document.getElementById('articleForm').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -132,7 +117,6 @@ document.getElementById('articleForm').addEventListener('submit', function (e) {
     const editor = tinymce.get('articleContent');
     const plain  = editor.getContent({ format: 'text' }).trim();
 
-    // Basic validation
     if (!title || !author) {
         alert("Please fill in both the title and author.");
         return;
@@ -143,9 +127,7 @@ document.getElementById('articleForm').addEventListener('submit', function (e) {
         return;
     }
 
-    // 🔴 IMPORTANT: sync TinyMCE content into the textarea
-    // This writes the editor HTML into <textarea name="articleContent">
-    editor.save(); // or: tinymce.triggerSave();
+    editor.save(); 
 
     const form = e.target;
     const formData = new FormData(form);
@@ -162,7 +144,7 @@ document.getElementById('articleForm').addEventListener('submit', function (e) {
         if (trimmed === "SUCCESS") {
             alert("Article added successfully!");
             form.reset();
-            editor.setContent('');  // clear TinyMCE
+            editor.setContent('');  
         } else if (trimmed === "DUPLICATE") {
             alert("An article with that title already exists. Please write about something else or edit the existing article.");
         } else {
