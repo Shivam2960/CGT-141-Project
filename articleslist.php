@@ -54,6 +54,16 @@ $officialArticles = [
     'author' => 'Ryunosuke Matsuda',
     'path'   => 'pokemon.html'
 ],
+[
+  'title'  => 'Once Human: Is it worth playing?',
+  'author' => 'Yoonki Lee',
+  'path'   => 'oncehuman.html'
+],
+[
+  'title'  => 'Wuthering Waves: Iuno & Chisa Character Lore',
+  'author' => 'Yoonki Lee',
+  'path'   => 'wutheringwaves.html'
+],
 ];
 ?>
 <!DOCTYPE html>
@@ -128,15 +138,22 @@ $officialArticles = [
 <section class="mb-5" aria-labelledby="official-heading">
 
   <!-- Float box RIGHT of official section title -->
-  <div class="article-status-box">
-    <h2 class="h6 mb-2">Article Types</h2>
-    <p class="mb-1">
-      <strong>Official Articles</strong> are fact-checked and locked by developers.
-    </p>
-    <p class="mb-0">
-      <strong>Unofficial Articles</strong> are community-written, unverified, and editable.
-    </p>
-  </div>
+<div class="article-status-box">
+  <h2 class="h6 mb-2">Article Types</h2>
+  <p class="mb-1">
+    <strong>Official Articles</strong> are fact-checked and locked by developers.
+  </p>
+  <p class="mb-0">
+    <strong>Unofficial Articles</strong> are community-written, unverified, and editable.
+  </p>
+
+  <!-- ADD THIS NEW LINE -->
+  <p class="conversion-note">
+    Once an unofficial article is in a good state, it will be converted into an official
+    article by the developers of this website.
+  </p>
+</div>
+
 
   <h2 id="official-heading" class="mb-3">Official Articles</h2>
 

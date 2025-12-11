@@ -208,15 +208,29 @@ body {
 /* ========= Article List: Official vs Unofficial Float ========= */
 
 .article-status-box {
-  float: right;                     /* <-- FLOAT */
+  float: right;
   width: 260px;
   padding: 1rem;
-  margin: -10px 0 1rem 1.5rem;      /* aligns box into top-right of "Official Articles" */
+  /* push it down to about where the first list item starts */
+  margin: 3.35rem 0 1rem 1.5rem;
   background-color: #f5f5f5;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 0.9rem;
 }
+
+.article-status-box .conversion-note {
+  margin-top: 6px;       /* reduces spacing above the sentence */
+  margin-bottom: 0;      /* no extra padding at bottom */
+  color: #000;           /* ensure black text */
+  font-size: 0.85rem;    /* optional: slightly smaller, like helper text */
+  line-height: 1.3;      /* keeps it compact */
+}
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
 
 /* Keeps following content (Unofficial Articles section) BELOW the float */
 .clear-floats {

@@ -16,6 +16,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>League of Legends - The Wiki of Games</title>
+
+  <!-- Match static article styling (same as NBA / Minecraft / FIFA) -->
+  <style>
+    .article-meta {
+      color: #333;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .article-meta strong {
+      font-weight: 600;
+    }
+    .article-content {
+      border-top: 1px solid #ccc;
+      padding-top: 1.5rem;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 
 <body>
@@ -35,7 +54,6 @@
 
         <!-- Navigation -->
         <nav class="main-nav d-flex flex-grow-1 justify-content-center" aria-label="Main navigation">
-          <!-- NEW: Home Page link right after the brand -->
           <a href="index.html"
              class="header-item top-link text-decoration-none text-center">
             Home Page
@@ -64,7 +82,7 @@
   <!-- ======= MAIN CONTENT ======= -->
   <main class="page-content container mt-4 mb-5" role="main">
 
-    <!-- Back button (same spot as unofficial articles) -->
+    <!-- Back button (same spot as FIFA / NBA / unofficial articles) -->
     <div class="mb-3">
       <a href="articleslist.php" class="btn btn-primary">
         &larr; Back to Articles
@@ -79,7 +97,7 @@
     <section class="article-meta mb-3 small text-muted">
       <p class="mb-1"><strong>Author:</strong> Ryan He</p>
       <p class="mb-1"><strong>Editors:</strong> None</p>
-      <p class="mb-0"><strong>Date Written:</strong> Dec 1st 2025</p>
+      <p class="mb-0"><strong>Date Written:</strong> Dec 1, 2025</p>
     </section>
 
     <!-- White article box -->
@@ -209,7 +227,7 @@
       </section>
 
       <!-- The Community -->
-      <section class="fs-5">
+      <section class="fs-5 mb-4">
         <h2 class="h4 mb-3">The Community</h2>
         <p>
           The common stigma of everyone who doesn’t play League is that it “sucks.” The truth is that League itself is a pretty
@@ -220,6 +238,72 @@
           This, combined with each game taking about 30 minutes or longer, makes losing a slow, painful, and oftentimes
           frustrating experience, especially when you get blamed for it.
         </p>
+      </section>
+
+<section class="mb-5" aria-labelledby="screenshots-heading">
+
+  <h2 id="screenshots-heading" class="h4 mb-4 text-center">
+    League of Legends Screenshots
+  </h2>
+
+  <div class="row g-3 text-center">
+
+    <figure class="col-12 col-md-6">
+      <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm">
+        <img
+          src="images/LoLGameplay1.png"
+          class="img-fluid object-fit-cover"
+          alt="Screenshot of League of Legends gameplay"
+        >
+      </div>
+      <figcaption class="small text-muted mt-2">
+        A screenshot of League of Legends gameplay.
+      </figcaption>
+    </figure>
+
+    <figure class="col-12 col-md-6">
+      <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm">
+        <img
+          src="images/LoLGameplay2.jpg"
+          class="img-fluid object-fit-cover"
+          alt="Another screenshot of League of Legends gameplay"
+        >
+      </div>
+      <figcaption class="small text-muted mt-2">
+        Another screenshot of League of Legends gameplay.
+      </figcaption>
+    </figure>
+
+  </div>
+</section>
+
+
+      <!-- Download / Play section (mirrors purchase section on other pages) -->
+      <section class="mt-4" aria-labelledby="download-heading">
+        <h2 id="download-heading" class="h4 mb-3 text-center">
+          Play League of Legends
+        </h2>
+
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <!-- Text-only button; you can add a logo img inside later if you want -->
+<a href="https://www.leagueoflegends.com/en-us/download/"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="btn btn-dark d-flex align-items-center gap-2 px-4 py-2"
+   role="button">
+
+  <img
+    src="images/riot.png"
+    alt="Riot Games logo"
+    width="28"
+    height="28"
+  >
+
+  <span>Download from Riot Games</span>
+</a>
+
+          <!-- Replace href="#" with the real Riot download URL when you’re ready -->
+        </div>
       </section>
 
     </article>

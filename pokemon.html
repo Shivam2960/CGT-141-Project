@@ -16,6 +16,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Pokémon – The Wiki of Games</title>
+
+  <!-- Match static article styling (same as NBA / Minecraft / LoL / FIFA) -->
+  <style>
+    .article-meta {
+      color: #333;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .article-meta strong {
+      font-weight: 600;
+    }
+    .article-content {
+      border-top: 1px solid #ccc;
+      padding-top: 1.5rem;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 
 <body>
@@ -35,7 +54,6 @@
 
         <!-- Navigation -->
         <nav class="main-nav d-flex flex-grow-1 justify-content-center" aria-label="Main navigation">
-          <!-- NEW: Home Page link right after the brand -->
           <a href="index.html"
              class="header-item top-link text-decoration-none text-center">
             Home Page
@@ -64,7 +82,7 @@
   <!-- ======= MAIN CONTENT ======= -->
   <main class="page-content container mt-4 mb-5" role="main">
 
-    <!-- Back button (same spot as unofficial articles / other official pages) -->
+    <!-- Back button -->
     <div class="mb-3">
       <a href="articleslist.php" class="btn btn-primary">
         &larr; Back to Articles
@@ -77,44 +95,28 @@
     <div class="article-meta small text-muted mb-3">
       <p class="mb-1"><strong>Original Author:</strong> Ryunosuke Matsuda</p>
       <p class="mb-1"><strong>Editors:</strong> None</p>
-      <p class="mb-0"><strong>Date Written:</strong> Dec 3rd, 2025</p>
+      <p class="mb-0"><strong>Date Written:</strong> Dec 3, 2025</p>
     </div>
 
-    <!-- White card just for the article body, like NBA 2K / Minecraft / LoL -->
+    <!-- White article card -->
     <article class="article-content shadow-sm bg-white p-4 rounded">
 
       <!-- Intro section -->
       <section class="fs-5 mb-4">
         <p>
-          <strong>Pokémon</strong> is an electronic game series from Nintendo that debuted in Japan in
-          February 1996 as <em>Pokémon Green</em> and <em>Pokémon Red</em>. The franchise later became wildly
+          Pokémon is an electronic game series from Nintendo that debuted in Japan in
+          February 1996 as Pokémon Green and Pokémon Red. The franchise later became wildly
           popular in the United States and around the world. The series, originally produced for the
           company’s Game Boy handheld consoles, was introduced to the United States in 1998 with two
-          titles known to fans as <em>Red</em> and <em>Blue</em>. In the games, players assume the role of Pokémon
+          titles known to fans as Red and Blue. In the games, players assume the role of Pokémon
           trainers, obtaining cartoon monsters and developing them to battle other Pokémon. Over time,
           Pokémon became one of the most successful video game franchises in the world. A core part of the
           experience is capturing, growing, and battling Pokémon.
         </p>
       </section>
 
-      <!-- Images row -->
-      <section class="mb-4" aria-label="Pokémon screenshots and artwork">
-        <div class="row g-3">
-          <div class="col-12 col-md-6">
-            <img src="images/pokemonGamePic.jpg"
-                 class="img-fluid rounded"
-                 alt="Gameplay screenshot from a Pokémon game">
-          </div>
-          <div class="col-12 col-md-6">
-            <img src="images/pokemon.jpeg"
-                 class="img-fluid rounded"
-                 alt="Artwork featuring Pokémon characters">
-          </div>
-        </div>
-      </section>
-
       <!-- Description / overview section -->
-      <section class="fs-5">
+      <section class="fs-5 mb-5">
         <p>
           Pokémon is a role-playing adventure game series where you explore a vibrant world filled with
           unique creatures called Pokémon. Each Pokémon has its own personality, abilities, and type. As a
@@ -124,10 +126,71 @@
         <p>
           Along the way, you meet all kinds of characters, uncover small stories hidden in each region, and
           watch your Pokémon grow stronger through battles and friendship. The games are designed to be both
-          relaxing and exciting and there’s no single “right” way to play. Some players enjoy collecting every
+          relaxing and exciting, and there’s no single “right” way to play. Some players enjoy collecting every
           Pokémon, others focus on competitive battling, and many simply want to explore the world at their
           own pace.
         </p>
+      </section>
+
+      <!-- Screenshots section with heading -->
+      <section class="mb-4" aria-labelledby="pokemon-images-heading">
+        <h2 id="pokemon-images-heading" class="h4 mb-3 text-center">
+          Pokémon Images
+        </h2>
+
+        <div class="row g-3 text-center">
+
+          <figure class="col-12 col-md-6">
+            <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm">
+              <img
+                src="images/pokemonGamePic.jpg"
+                class="img-fluid object-fit-cover"
+                alt="Cover art of Pokémon games on Nintendo Switch"
+              >
+            </div>
+            <figcaption class="small text-muted mt-2">
+              Cover art of Pokémon games on Nintendo Switch.
+            </figcaption>
+          </figure>
+
+          <figure class="col-12 col-md-6">
+            <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm">
+              <img
+                src="images/pokemon.jpeg"
+                class="img-fluid object-fit-cover"
+                alt="Artwork featuring Pokémon characters"
+              >
+            </div>
+            <figcaption class="small text-muted mt-2">
+              Artwork featuring iconic Pokémon characters.
+            </figcaption>
+          </figure>
+
+        </div>
+      </section>
+
+      <!-- Purchase / Play section -->
+      <section class="mt-4" aria-labelledby="purchase-heading">
+        <h2 id="purchase-heading" class="h4 mb-3 text-center">
+          Purchase Pokémon Games
+        </h2>
+
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <!-- Button with icon (you provide the actual logo file) -->
+          <a href="https://www.nintendo.com/us/store/games/pokemon-games/#sort=df&p=0"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="btn btn-dark d-flex align-items-center gap-2 px-4 py-2"
+             role="button">
+            <img
+              src="images/switchlogo.png"
+              alt="Pokémon logo"
+              width="28"
+              height="28"
+            >
+            <span>Purchase from Nintendo</span>
+          </a>
+        </div>
       </section>
 
     </article>
