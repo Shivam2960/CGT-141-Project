@@ -107,7 +107,7 @@ if ($article && !empty($article['editors'])) {
   crossorigin="anonymous"
 >
 
-  <link href="master.css" rel="stylesheet" type="text/css" />
+  <link href="CSS/master.css" rel="stylesheet" type="text/css" />
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
